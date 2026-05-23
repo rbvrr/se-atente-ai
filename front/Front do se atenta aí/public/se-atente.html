@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Se atente aí — CESAR School</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --color-background-primary:#ffffff;--color-background-secondary:#f5f5f4;
+  --color-text-primary:#1c1c1e;--color-text-secondary:#52525b;--color-text-tertiary:#9a9a9f;
+  --color-text-danger:#e24b4a;--color-text-success:#1d9e75;--color-text-info:#378add;
+  --color-text-warning:#ba7517;--color-background-success:#e8f5ee;--color-background-info:#e8f0fa;
+  --color-background-warning:#fbf2e3;--color-background-danger:#fbe8e3;
+  --color-border-tertiary:#e7e5e4;--color-border-secondary:#d6d3d1;
+  --border-radius-md:8px;--border-radius-lg:12px;--font-mono:'JetBrains Mono', monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#fafaf9;color:var(--color-text-primary);font-family:'Inter',sans-serif;font-size:13px;line-height:1.45}
+.wrap{max-width:760px;margin:0 auto;padding:14px 16px 40px}
+input[type=text],input[type=number],input[type=password]{width:100%;height:34px;padding:0 10px;font-size:12px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-secondary);outline:none}
+input:focus{border-color:#F05000;background:#fff}
+#app{--cs:#F05000;--mode:#1D9E75;--mbg:var(--color-background-success);--mtx:var(--color-text-success);padding:.5rem 0}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:.75rem}
+.hdr{background:#1C1C1E;border-radius:var(--border-radius-lg);padding:.85rem 1.1rem;margin-bottom:.75rem;display:flex;align-items:center;justify-content:space-between;color:white}
+.hdr-r{display:flex;align-items:center;gap:12px}
+.hwp{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.1);font-size:10px;cursor:pointer}
+.hwd{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3)}
+.hwd.on{background:#6EE7A0}.hwd.err{background:#FC8080}.hwd.pend{background:#FFD080}
+.uav{width:28px;height:28px;border-radius:50%;background:var(--cs);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.nav{display:flex;gap:4px;border-bottom:1px solid var(--color-border-tertiary);margin-bottom:1rem;padding-bottom:5px}
+.ntab{flex:1;padding:8px;border:none;background:transparent;cursor:pointer;font-size:11px;color:var(--color-text-secondary);border-radius:6px}
+.ntab.on{color:var(--cs);font-weight:600;background:var(--color-background-secondary)}
+.modes{display:flex;gap:6px;margin-bottom:1rem}
+.mbtn{flex:1;padding:10px 5px;border-radius:8px;border:1px solid var(--color-border-tertiary);background:var(--color-background-secondary);cursor:pointer;font-size:11px;transition:all .2s}
+.mbtn.on{background:var(--mbg);color:var(--mtx);border-color:var(--mode)}
+.tg{display:grid;grid-template-columns:1.2fr 1fr;gap:1rem}
+.tcard{padding:2rem 1rem;display:flex;flex-direction:column;align-items:center;text-align:center}
+.cwrap{position:relative;width:180px;height:180px;margin:1rem 0}
+.tc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.digs{font-family:var(--font-mono);font-size:42px;letter-spacing:2px}
+.sublbl{font-size:11px;color:var(--color-text-tertiary);text-transform:uppercase}
+.ctrls{display:flex;gap:10px;margin-top:1rem}
+.bmain{padding:10px 25px;border-radius:8px;border:none;background:var(--cs);color:white;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px}
+.bico{width:40px;height:40px;border-radius:8px;border:1px solid var(--color-border-secondary);background:white;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.side-card{padding:1rem}
+.sb{background:var(--color-background-secondary);padding:10px;border-radius:8px;margin-bottom:8px}
+.slbl{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase}
+.sval{font-size:18px;font-family:var(--font-mono)}
+.csec{padding:1rem;border-bottom:1px solid var(--color-border-tertiary)}
+.cslbl{font-weight:600;margin-bottom:10px;display:block}
+.crow{margin-bottom:10px}.crow label{font-size:10px;color:var(--color-text-tertiary);display:block;margin-bottom:4px}
+.bcfg{padding:8px 15px;border-radius:6px;border:1px solid var(--color-border-secondary);background:var(--color-background-secondary);cursor:pointer;font-size:12px}
+.err-box{background:var(--color-background-danger);color:var(--color-text-danger);padding:10px;border-radius:8px;font-size:11px;margin-top:10px}
+.pbtn{background:#EF9F27;color:white;padding:8px 15px;border-radius:8px;border:none;font-weight:600;cursor:pointer}
+.analytics-item{padding:12px;background:var(--color-background-secondary);border-radius:8px;margin-bottom:8px;font-size:11px;border-left:4px solid var(--cs)}
+.met-row{display:flex;gap:12px;margin-top:6px;opacity:.8}
+</style>
+</head><body>
+<main class="wrap"><div id="app">
+
+<!-- WELCOME -->
+<div id="vW" style="display:none">
+  <div class="card" style="max-width:400px;margin:4rem auto;padding:2rem">
+    <h2 style="margin-top:0">Se atente aí</h2>
+    <div class="crow"><label>Seu Nome (Firebase)</label><input type="text" id="rName" placeholder="Ex: Paulo Silva"/></div>
+    <button class="bmain" style="width:100%;justify-content:center" onclick="register()">Entrar e Sincronizar</button>
+    <div id="rErr" style="color:var(--color-text-danger);font-size:11px;margin-top:8px"></div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="vA" style="display:none">
+  <div class="hdr">
+    <div><strong>Se atente aí</strong><div id="hStk" style="font-size:10px;opacity:.8"><i class="ti ti-flame"></i> <span id="hStkN">1</span> dia de foco</div></div>
+    <div class="hdr-r">
+      <div class="hwp" onclick="navTo('settings')"><div class="hwd" id="hwDot"></div><span id="stHw">Hardware</span></div>
+      <div class="uav" id="uAv">U</div><span id="uNm">Usuário</span>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="ntab on" data-v="timer" onclick="navTo('timer')"><i class="ti ti-clock"></i> Timer</button>
+    <button class="ntab" data-v="analytics" onclick="navTo('analytics')"><i class="ti ti-chart-bar"></i> Analytics</button>
+    <button class="ntab" data-v="settings" onclick="navTo('settings')"><i class="ti ti-settings"></i> Config</button>
+  </div>
+
+  <div id="vTimer">
+    <div class="modes">
+      <button class="mbtn on" data-m="study" onclick="setMode('study')">Estudos</button>
+      <button class="mbtn" data-m="work" onclick="setMode('work')">Trabalho</button>
+      <button class="mbtn" data-m="meditation" onclick="setMode('meditation')">Meditação</button>
+      <button class="mbtn" data-m="exercise" onclick="setMode('exercise')">Exercício</button>
+    </div>
+    <div class="tg">
+      <div class="card tcard">
+        <div id="plbl" style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--color-text-tertiary)">Pronto</div>
+        <div class="cwrap">
+          <svg width="180" height="180" viewBox="0 0 180 180">
+            <circle cx="90" cy="90" r="78" fill="none" stroke="var(--color-border-tertiary)" stroke-width="8"/>
+            <circle id="arc" cx="90" cy="90" r="78" fill="none" stroke="var(--mode)" stroke-width="8" stroke-dasharray="490" stroke-linecap="round" transform="rotate(-90 90 90)" style="transition:all 0.3s"/>
+          </svg>
+          <div class="tc"><div class="digs" id="digs">00:00</div><div id="sublbl" class="sublbl">estudos</div></div>
+        </div>
+        <div class="ctrls">
+          <button class="bmain" id="btnM" onclick="handleMain()"><i class="ti ti-player-play" id="btnI"></i> <span id="btnL">Iniciar</span></button>
+          <button class="bico" onclick="resetT()"><i class="ti ti-rotate-clockwise"></i></button>
+          <button id="btnBreak" class="pbtn" onclick="enterBreak()">Pausa Manual</button>
+        </div>
+      </div>
+      <div class="side">
+        <div class="card side-card">
+          <div class="sb"><div class="slbl">Sessões hoje</div><div class="sval" id="stS">0</div></div>
+          <div class="sb"><div class="slbl">Foco total</div><div class="sval" id="stF">0m</div></div>
+          <div id="hwDbg" style="font-size:9px;color:var(--color-text-tertiary);font-family:monospace"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="vAnalytics" style="display:none">
+    <div class="card" style="padding:1.5rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+        <h3 style="margin:0">Analytics em Tempo Real</h3>
+        <button class="bcfg" onclick="loadAnalytics()">Atualizar Dados</button>
+      </div>
+      <div id="analyticsList">Carregando métricas do Firebase...</div>
+    </div>
+  </div>
+
+  <div id="vSettings" style="display:none">
+    <div class="card">
+      <div class="csec">
+        <span class="cslbl">Configurações de Tempo</span>
+        <div class="crow">
+          <label>Tempo de Foco (mín 2 min)</label>
+          <input type="number" id="cfgFoc" min="2" max="60" value="15"/>
+        </div>
+        <div class="crow">
+          <label>Tempo de Pausa (mín 1 min)</label>
+          <input type="number" id="cfgBrk" min="1" max="20" value="5"/>
+        </div>
+        <button class="bcfg" onclick="saveSettings()">Salvar Configurações</button>
+        <div id="cfgMsg" style="font-size:10px;margin-top:8px;color:var(--color-text-success)"></div>
+      </div>
+      <div class="csec">
+        <span class="cslbl">Hardware</span>
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:8px;margin-bottom:10px">
+          <input type="text" id="cfgIP" placeholder="IP da Placa"/>
+          <input type="text" id="cfgPT" value="81"/>
+        </div>
+        <button class="bcfg" onclick="connectHW()">Conectar</button>
+      </div>
+      <div class="csec" style="border:none">
+        <button class="bcfg" onclick="doLogout()" style="color:var(--color-text-danger)">Trocar Usuário</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const R=78, CIRCUM=2*Math.PI*R;
+const MODES={
+  study:{lbl:'Estudos',arc:'#1D9E75',sub:'estudos'},work:{lbl:'Trabalho',arc:'#378ADD',sub:'trabalho'},
+  meditation:{lbl:'Meditação',arc:'#BA7517',sub:'meditação'},exercise:{lbl:'Exercício',arc:'#D85A30',sub:'exercício'}
+};
+const el=id=>document.getElementById(id);
+let settings=JSON.parse(localStorage.getItem('fb_settings')||'{"focusMins":15,"breakMins":5}');
+let S={phase:'idle',mode:'study',rem:settings.focusMins*60,iid:null,sess:0,totalFocus:0};
+let user=JSON.parse(localStorage.getItem('fb_user')||'null');
+let hwCfg=JSON.parse(localStorage.getItem('fb_hw')||'{"ip":"","port":"81"}');
+let ws=null, reconT=null;
+const FIREBASE_URL = "https://mpes-20261-default-rtdb.firebaseio.com/";
+
+function init(){
+  if(!user){el('vW').style.display='block';el('vA').style.display='none';}
+  else{
+    el('vW').style.display='none';el('vA').style.display='block';
+    el('uAv').textContent=user.name[0].toUpperCase();el('uNm').textContent=user.name.split(' ')[0];
+    fillSettings();renderAll();
+    if(hwCfg.ip) connectHW();
+  }
+}
+function register(){
+  const n=el('rName').value.trim();if(!n){el('rErr').textContent='Diga seu nome!';return;}
+  user={name:n};localStorage.setItem('fb_user',JSON.stringify(user));init();
+}
+function navTo(v){
+  ['timer','analytics','settings'].forEach(k=>{const t=el('v'+k[0].toUpperCase()+k.slice(1)); if(t)t.style.display=k===v?'block':'none';});
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.toggle('on',t.dataset.v===v));
+  if(v==='analytics') loadAnalytics();
+}
+function setMode(m){ if(S.phase!=='idle')return; S.mode=m; renderAll(); hw({cmd:'config',mode:m,user:user?.name}); }
+function applyTheme(){
+  const m=MODES[S.mode]; el('app').style.setProperty('--mode', S.phase==='break'?'#EF9F27':m.arc);
+  el('arc').style.stroke=S.phase==='break'?'#EF9F27':m.arc;
+}
+function handleMain(){ if(S.phase==='idle')startF(); else if(S.phase==='paused')resume(); else pause(); }
+function startF(){ 
+  if(settings.focusMins < 2) settings.focusMins = 2;
+  S.phase='focus';S.rem=settings.focusMins*60;hw({cmd:'start',mode:S.mode,duration:S.rem,user:user?.name});go();renderAll(); 
+}
+function pause(){ S.prev=S.phase;S.phase='paused';clearInterval(S.iid);S.iid=null;hw({cmd:'pause'});renderAll(); }
+function resume(){ S.phase=S.prev;go();renderAll(); }
+function resetT(){ clearInterval(S.iid);S.iid=null;S.phase='idle';S.rem=settings.focusMins*60;hw({cmd:'stop'});renderAll(); }
+function enterBreak(){ 
+  if(settings.breakMins < 1) settings.breakMins = 1;
+  clearInterval(S.iid); S.phase='break';S.rem=settings.breakMins*60;
+  hw({cmd:'break',duration:S.rem,user:user?.name}); go(); renderAll(); 
+}
+function go(){
+  clearInterval(S.iid);
+  S.iid=setInterval(()=>{
+    if(S.rem>0) S.rem--; else{ 
+      clearInterval(S.iid); 
+      if(S.phase==='focus'){S.sess++;S.totalFocus+=settings.focusMins;enterBreak();}else{resetT();} 
+    }
+    renderTimer();
+  },1000);
+}
+function renderAll(){
+  applyTheme();
+  document.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('on',b.dataset.m===S.mode));
+  renderTimer();renderControls();el('stS').textContent=S.sess;el('stF').textContent=S.totalFocus+'m';
+}
+function renderTimer(){
+  const total=(S.phase==='break'?settings.breakMins:settings.focusMins)*60;
+  el('arc').style.strokeDashoffset=CIRCUM*(1-S.rem/total);
+  el('digs').textContent=String(Math.floor(S.rem/60)).padStart(2,'0')+':'+String(S.rem%60).padStart(2,'0');
+  el('sublbl').textContent=S.phase==='break'?'descanso':MODES[S.mode].sub;
+  el('plbl').textContent=S.phase==='idle'?'pronto':(S.phase==='paused'?'pausado':(S.phase==='break'?'descanso':'ativo'));
+}
+function renderControls(){
+  const i=el('btnI'),l=el('btnL'),bb=el('btnBreak');
+  i.className=(S.phase==='focus'||S.phase==='break')?'ti ti-player-pause':'ti ti-player-play';
+  l.textContent=(S.phase==='focus'||S.phase==='break')?'Pausar':(S.phase==='paused'?'Continuar':'Iniciar');
+  bb.style.display=(S.phase==='idle')?'block':'none';
+}
+async function loadAnalytics(){
+  const list=el('analyticsList'); list.textContent="Carregando...";
+  try{
+    const r=await fetch(`${FIREBASE_URL}/sessoes.json`);
+    const d=await r.json();
+    if(!d){list.textContent="Nenhuma sessão encontrada.";return;}
+    const items=Object.values(d).reverse().slice(0,15);
+    list.innerHTML=items.map(s=>`
+      <div class="analytics-item">
+        <div style="display:flex;justify-content:space-between">
+          <span><b>${s.usuario || 'Anonimo'}</b>: ${s.tipo}</span>
+          <span style="opacity:.6">${new Date().toLocaleDateString()}</span>
+        </div>
+        <div class="met-row">
+          <span><i class="ti ti-clock"></i> ${s.minutos}m</span>
+          <span><i class="ti ti-rotate"></i> Ciclo ${s.ciclo}/4</span>
+          <span><i class="ti ti-alert-circle"></i> ${s.interrupcoes} saídas</span>
+          <span><i class="ti ti-volume"></i> ${s.ruido?'Com ruído':'Silêncio'}</span>
+        </div>
+      </div>
+    `).join('');
+  }catch(e){list.textContent="Erro ao carregar dados.";}
+}
+function connectHW(){
+  const ip=el('cfgIP').value.trim(), port=el('cfgPT').value.trim();
+  if(!ip)return; hwCfg={ip,port};localStorage.setItem('fb_hw',JSON.stringify(hwCfg));
+  if(ws){ws.onclose=null;ws.close();}
+  try{
+    setHW('pend','Conectando...'); ws=new WebSocket(`ws://${ip}:${port}`);
+    ws.onopen=()=>{setHW('on','Conectado'); hw({cmd:'hello',user:user?.name});};
+    ws.onclose=()=>{setHW('err','Offline');clearTimeout(reconT);reconT=setTimeout(connectHW,5000);};
+    ws.onmessage=e=>{
+      try{
+        const m=JSON.parse(e.data);
+        if(m.event==='btn')handleMain();
+        if(m.event==='status'){
+          if(m.phase!==S.phase||m.mode!==S.mode){ S.phase=m.phase;S.mode=m.mode; if(S.phase==='focus'||S.phase==='break'){if(!S.iid)go();}else{clearInterval(S.iid);S.iid=null;} }
+          if(Math.abs(S.rem-m.rem)>3)S.rem=m.rem;
+          if(m.focusMins) settings.focusMins = m.focusMins;
+          if(m.breakMins) settings.breakMins = m.breakMins;
+          renderAll();
+        }
+      }catch(err){ console.error("Erro ao processar mensagem WS:", err, e.data); }
+    };
+  }catch(e){setHW('err','Erro WS'); console.error("Erro na conexão WS:", e);}
+}
+function hw(cmd){if(ws&&ws.readyState===1)ws.send(JSON.stringify(cmd));}
+function setHW(c,t){el('hwDot').className='hwd '+c;el('stHw').textContent=t;el('hwDbg').textContent=(c==='err'?'Offline':'IP: '+hwCfg.ip);}
+function fillSettings(){
+  el('cfgIP').value=hwCfg.ip;el('cfgPT').value=hwCfg.port;
+  el('cfgFoc').value=settings.focusMins;el('cfgBrk').value=settings.breakMins;
+}
+function saveSettings(){
+  const f=parseInt(el('cfgFoc').value), b=parseInt(el('cfgBrk').value);
+  if(f<2 || b<1){ alert("Foco mín 2 min, Pausa mín 1 min."); return; }
+  settings.focusMins=f;settings.breakMins=b;
+  localStorage.setItem('fb_settings',JSON.stringify(settings));
+  hw({cmd:'config',focusMins:settings.focusMins,breakMins:settings.breakMins,user:user?.name});
+  if(S.phase==='idle'){S.rem=settings.focusMins*60;renderTimer();}
+  el('cfgMsg').textContent="Configurações salvas e enviadas!";
+  setTimeout(()=>el('cfgMsg').textContent="", 3000);
+}
+function doLogout(){
+  localStorage.removeItem('fb_user');
+  location.reload();
+}
+init();
+</script></body></html>
