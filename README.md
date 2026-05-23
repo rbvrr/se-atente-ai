@@ -7,13 +7,13 @@ Um dispositivo IoT baseado na técnica Pomodoro, com sensores inteligentes que m
 Em desenvolvimento.
 
 # Preview
+<img width="774" height="465" alt="image" src="https://github.com/user-attachments/assets/ac3b6577-eabf-4071-84c4-6ddd050c7b3b" />
 
 
 # Tecnologias Utilizadas
 - Hardware: Blackboard Wisdom
 - Biblioteca: PlatformIO
 - Banco de Dados: Firebase
-- Front: 
-
+- Front: Claude + Lovable 
 
 # Pré-requisitos e Instalação
