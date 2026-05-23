@@ -10,7 +10,7 @@ Em desenvolvimento.
 
 
 # Tecnologias Utilizadas
-- Hardware: Blackboard Wisdoom
+- Hardware: Blackboard Wisdom
 - Biblioteca: PlatformIO
 - Banco de Dados: Firebase
 - Front: 
